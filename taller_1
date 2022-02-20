@@ -1,0 +1,60 @@
+-- Database: taller_1
+
+-- DROP DATABASE IF EXISTS taller_1;
+/*
+CREATE DATABASE taller_1
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+*/	
+create table city(
+	id serial primary key,
+	city varchar(100) unique not null
+);
+
+create table user_type(
+	id serial primary key,
+	u_type varchar(20)
+);
+
+create table app_user(
+	id_type varchar(3),
+	id varchar(20) primary key,
+	full_name varchar(60),
+	email varchar(60) unique not null,
+	u_password varchar(40) not null,
+	address varchar(40),
+	city serial references city (id),
+	u_type serial references user_type (id)
+);
+
+create table phone(
+	id serial primary key,
+	phone_numer varchar(10) unique not null,
+	owner varchar(20) references app_user(id)
+);
+
+create table products(
+	id serial primary key,
+	title varchar(20) not null,
+	category varchar(20) not null,
+	brand varchar(20) not null,
+	photos bytea,
+	price numeric(15,4),
+	caracteristic text,
+	description text,
+	stock integer
+	client varchar(20) references app_user (id)
+);
+
+create table variants(
+	id serial primary key,
+	price numeric(15,4),
+	stock integer,
+	product serial references product (id)
+);
+
