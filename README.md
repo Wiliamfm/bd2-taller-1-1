@@ -1,5 +1,8 @@
 # bid_data_2-taller-1-1
 
+### video link:
+- https://youtu.be/3cjnjiz-7HI
+
 ### **Point 2:**
 - Data Dictionary:
   - app_user - shoping_cart relationship: permite asociar cada compra a un usuario único por medio de su identificador (número de documento).
